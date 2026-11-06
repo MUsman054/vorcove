@@ -8,10 +8,7 @@ import Services from './components/Services.jsx';
 import Industries from './components/Industries.jsx';
 import Products from './components/Products.jsx';
 import Process from './components/Process.jsx';
-import Engagement from './components/Engagement.jsx';
-import Why from './components/Why.jsx';
 import Faq from './components/Faq.jsx';
-import CtaBand from './components/CtaBand.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import { startReveal, startScrollEffects, startSmoothScroll } from './lib/motion.js';
@@ -37,10 +34,7 @@ export default function App() {
         <Industries active={industry} onChange={setIndustry} />
         <Products />
         <Process />
-        <Engagement />
-        <Why />
         <Faq />
-        <CtaBand />
         <Contact />
       </main>
       <Footer />

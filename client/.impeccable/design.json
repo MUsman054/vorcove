@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-06T00:00:00Z",
+  "title": "Design System: Vorcove",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Sea Ink", "canonical": "#0A171E", "tonalRamp": ["#0A171E", "#0F222B", "#152D37", "#1C3843", "#284752", "#52616A", "#B7C6CC", "#EEF1F1"] },
+      "beacon": { "role": "primary", "displayName": "Beacon Orange", "canonical": "#FF8A3D", "tonalRamp": ["#5A2405", "#7A3207", "#93400B", "#B4500F", "#E06A1F", "#FF8A3D", "#FFC29A", "#FFE9DA"] },
+      "pen": { "role": "primary", "displayName": "Ledger Pen", "canonical": "#B4500F", "tonalRamp": ["#5A2405", "#7A3207", "#93400B", "#B4500F", "#E06A1F", "#FF8A3D", "#FFC29A", "#FFE9DA"] },
+      "paper": { "role": "neutral", "displayName": "Ledger Paper", "canonical": "#FFFFFF", "tonalRamp": ["#52616A", "#8C999E", "#D6DBDB", "#DFE3E3", "#EEF1F1", "#F4F2EE", "#FAFAF9", "#FFFFFF"] },
+      "sand": { "role": "neutral", "displayName": "Statement Sand", "canonical": "#F4F2EE", "tonalRamp": ["#5E5A52", "#8A857B", "#B5B0A6", "#D6D2CA", "#E6E3DD", "#F4F2EE", "#F9F8F6", "#FFFFFF"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only; condensed uppercase Archivo." },
+      "headline": { "displayName": "Headline", "purpose": "Section account heads, product names, form title." },
+      "figure": { "displayName": "Figure", "purpose": "Every dollar amount and total, tabular lining figures." },
+      "label": { "displayName": "Label", "purpose": "Column heads, captions, field labels; never alone above a heading." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-ledger", "value": "cubic-bezier(.2,.8,.2,1)", "purpose": "Check stroke, pen ring and posted-entry reveal." },
+      { "name": "total-tween", "value": "520ms ease-out-quart", "purpose": "Recoverable total counting to its new sum; instant under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "640px" },
+      { "name": "tablet", "value": "900px" },
+      { "name": "hero-stack", "value": "1000px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Primary action on paper sheets.",
+      "html": "<button class=\"ds-btn-ink\">Book a business review</button>",
+      "css": ".ds-btn-ink{background:#0A171E;color:#fff;border:0;border-radius:4px;padding:16px 26px;font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:16px;font-stretch:105%;cursor:pointer;transition:background-color .2s}.ds-btn-ink:hover{background:#1C3843}.ds-btn-ink:focus-visible{outline:2px solid #0A171E;outline-offset:3px}"
+    },
+    {
+      "name": "Paper Button",
+      "kind": "button",
+      "refersTo": "button-paper",
+      "description": "Primary action on sea-ink binding bands.",
+      "html": "<div style=\"background:#0A171E;padding:24px\"><button class=\"ds-btn-paper\">Book a review</button></div>",
+      "css": ".ds-btn-paper{background:#fff;color:#0A171E;border:0;border-radius:4px;padding:16px 26px;font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:background-color .2s}.ds-btn-paper:hover{background:#FFE9DA}.ds-btn-paper:focus-visible{outline:2px solid #fff;outline-offset:3px}"
+    },
+    {
+      "name": "Ledger Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Underline-only form field with a wide uppercase label.",
+      "html": "<label class=\"ds-field\"><span>Business name</span><input placeholder=\"Acme Supply Co.\"></label>",
+      "css": ".ds-field{display:block;max-width:360px}.ds-field span{display:block;font-family:Archivo,system-ui,sans-serif;font-stretch:112%;font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#0C1B22}.ds-field input{display:block;width:100%;border:0;border-bottom:1.5px solid #8C999E;background:transparent;padding:12px 0 10px;font:17px 'Public Sans',system-ui,sans-serif;outline:none}.ds-field input::placeholder{color:#63727A}.ds-field input:focus{border-bottom-color:#0A171E;box-shadow:0 1.5px 0 #0A171E}"
+    },
+    {
+      "name": "Binding Nav",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Sticky ink header bar with links and the review button.",
+      "html": "<nav class=\"ds-nav\"><b>vorcove</b><a href=\"#\">Services</a><a href=\"#\">Products</a><a href=\"#\">How it works</a><a class=\"ds-nav-cta\" href=\"#\">Book a review</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:28px;height:72px;padding:0 24px;background:#0A171E}.ds-nav b{color:#fff;font:700 24px 'Bricolage Grotesque',sans-serif;letter-spacing:-.035em;margin-right:auto}.ds-nav a{color:#B7C6CC;font:500 15px 'Public Sans',sans-serif;text-decoration:none;border-bottom:1.5px solid transparent;padding:6px 0}.ds-nav a:hover{color:#fff;border-bottom-color:#fff}.ds-nav .ds-nav-cta{background:#fff;color:#0A171E;border:0;border-radius:4px;padding:11px 18px;font:700 15px Archivo,sans-serif}.ds-nav .ds-nav-cta:hover{background:#FFE9DA}"
+    },
+    {
+      "name": "Sample Review Row",
+      "kind": "custom",
+      "description": "Signature ledger row: tick a fix, the amount turns pen-orange inside a beacon ring.",
+      "html": "<div class=\"ds-row on\"><span class=\"ds-box\">&#10003;</span><span class=\"ds-leak\">Quotes sent, never followed up</span><span class=\"ds-amt\">$18,400</span></div><div class=\"ds-row\"><span class=\"ds-box\"></span><span class=\"ds-leak\">Orders re-keyed by hand</span><span class=\"ds-amt\">$6,250</span></div>",
+      "css": ".ds-row{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid #DFE3E3;max-width:560px;font:17px 'Public Sans',sans-serif;color:#0C1B22}.ds-box{width:22px;height:22px;border:1.5px solid #0A171E;border-radius:3px;display:grid;place-items:center;font-size:14px}.ds-leak{flex:1}.ds-amt{font:600 22px Archivo,sans-serif;font-variant-numeric:tabular-nums;padding:2px 10px;border-radius:50%}.ds-row.on .ds-amt{color:#B4500F;font-weight:700;box-shadow:0 0 0 1.8px #FF8A3D}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Revenue Ledger",
+    "overview": "Every Vorcove surface reads like the ledger from a business review: ruled sheets, heavy ink rules that close an account, column heads, tabular figures and totals that settle the argument. The system is typographic; imagery comes only from real product walkthroughs, framed and captioned as exhibits.",
+    "keyCharacteristics": [
+      "Condensed uppercase Archivo headlines, wide tracked Archivo column heads, Public Sans text.",
+      "Tables, rows and rules instead of cards.",
+      "Beacon orange appears only on money.",
+      "Square, stamped-form corners (4px at most).",
+      "One authored motion moment: ticking a fix in the sample ledger."
+    ],
+    "rules": [
+      { "name": "The Palette Law", "body": "Beacon orange (and its pen form) marks money and nothing else: recovered amounts, totals, leak markers. Buttons, links, tags and decoration never take it. The logo's beacon dot is the only exception.", "section": "colors" },
+      { "name": "The Binding Rule", "body": "Sea-ink full-width bands bind the ledger. Use them for the header, product exhibits, the review request and the footer, never as a card.", "section": "colors" },
+      { "name": "The Column Head Rule", "body": "Small uppercase labels exist only as column heads, captions and field labels. They never sit alone above a section heading.", "section": "typography" },
+      { "name": "The Rule-Weight Rule", "body": "Hierarchy between groups comes from rule weight (2px ink versus 1px hairline), never from shadows or cards.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set every dollar figure in Archivo with tabular lining figures.",
+      "Do open and close every account (section) with a 2px ink rule.",
+      "Do label any demonstration figures as illustrative, right next to them.",
+      "Do use real product walkthroughs as the only imagery, captioned as exhibits."
+    ],
+    "donts": [
+      "Don't use beacon orange for buttons, links, tags or decoration (the Palette Law).",
+      "Don't add shadows, cards or rounded corners above 4px.",
+      "Don't place a small uppercase label alone above a heading.",
+      "Don't add stock photography or decorative illustration.",
+      "Don't change the logo or its Bricolage wordmark."
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EMAIL, faqs, images } from '../data/content.js';
+import { EMAIL, faqs } from '../data/content.js';
 
 export default function Faq() {
   const [open, setOpen] = useState(0);
@@ -10,15 +10,7 @@ export default function Faq() {
         <div className="faq-side">
           <span className="eyebrow rv">FAQ</span>
           <h2 className="h2 rv d1">Questions, answered.</h2>
-          <p className="lead rv d2">Everything you need to know before we start.</p>
-          <div className="help rv d2">
-            <img src={images.help} alt="" loading="lazy" />
-            <div>
-              <b>Still have a question?</b>
-              <p>Ask us directly. You'll hear back within 24 hours.</p>
-              <a href={`mailto:${EMAIL}`} className="btn btn-mint" style={{ padding: '12px 20px', fontSize: 14.5 }}>{EMAIL}</a>
-            </div>
-          </div>
+          <p className="lead rv d2">Anything else? Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
         </div>
         <div className="rv d1">
           {faqs.map(([q, a], i) => (

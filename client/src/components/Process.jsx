@@ -1,20 +1,39 @@
 import { useEffect, useRef, useState } from 'react';
-import { images, steps } from '../data/content.js';
+import { steps } from '../data/content.js';
+
+// desktop lays the steps out side by side; tablets and phones stack them
+const SIDE_BY_SIDE = '(min-width: 961px)';
 
 export default function Process() {
   const dots = useRef([]);
   const [last, setLast] = useState(-1);
   const [fill, setFill] = useState(0);
+  const [across, setAcross] = useState(false);
 
-  // the progress line fills as each step's dot passes 60% of the screen height
+  // the line fills step by step as the section scrolls into view:
+  // across the row on desktop, down the column on smaller screens
   useEffect(() => {
+    const mq = window.matchMedia(SIDE_BY_SIDE);
     const paint = () => {
-      const mid = window.innerHeight * 0.6;
-      const tops = dots.current.map(d => d.getBoundingClientRect().top);
+      const ds = dots.current.filter(Boolean);
+      if (!ds.length) return;
+      const vh = window.innerHeight;
+      const wide = mq.matches;
+      const boxes = ds.map(d => d.getBoundingClientRect());
       let on = -1;
-      tops.forEach((t, i) => { if (t < mid) on = i; });
+      if (wide) {
+        const top = boxes[0].top;
+        if (top < vh * 0.85) {
+          const p = Math.min(1, (vh * 0.85 - top) / (vh * 0.35));
+          on = Math.round(p * (ds.length - 1));
+        }
+        setFill(on >= 0 ? boxes[on].left - boxes[0].left : 0);
+      } else {
+        boxes.forEach((b, i) => { if (b.top < vh * 0.6) on = i; });
+        setFill(on >= 0 ? Math.max(0, boxes[on].top - boxes[0].top) : 0);
+      }
+      setAcross(wide);
       setLast(on);
-      setFill(on >= 0 ? Math.max(0, tops[on] - tops[0]) : 0);
     };
     paint();
     window.addEventListener('scroll', paint, { passive: true });
@@ -25,28 +44,26 @@ export default function Process() {
   return (
     <section className="process" id="process">
       <div className="wrap">
-        <div className="proc-media rv">
-          <div className="img">
-            <img src={images.process} alt="A team reviewing charts and documents together" loading="lazy" />
-            <div className="cap"><small>Every project starts here</small><b>One conversation about where your revenue could grow.</b></div>
+        <div className="proc-head">
+          <div>
+            <span className="eyebrow rv">How we work</span>
+            <h2 className="h2 rv d1">Four steps, measured in revenue.</h2>
           </div>
+          <p className="lead rv d2">Every project starts with one conversation about where your revenue could grow.</p>
         </div>
-        <div>
-          <span className="eyebrow rv">How we work</span>
-          <h2 className="h2 rv d1">Four steps, measured in revenue.</h2>
-          <div className="steps">
-            <span className="fill" style={{ height: fill }} />
+        <div className="steps rv d2">
+          <span className="fill" style={across ? { width: fill } : { height: fill }} />
+          <ol>
             {steps.map((s, i) => (
-              <div key={s.title} className={`step${i <= last ? ' on' : ''}`}>
+              <li key={s.title} className={`step${i <= last ? ' on' : ''}`}>
                 <span className="dot" ref={el => (dots.current[i] = el)}>0{i + 1}</span>
                 <div>
                   <h3>{s.title}</h3>
                   <p>{s.text}</p>
-                  <span className="get"><b>You get</b> {s.get}</span>
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>

@@ -61,18 +61,6 @@ export default function Header({ onIndustry }) {
   return (
     <>
       <header className={`site-head${solid ? ' solid' : ''}${menusOff ? ' menus-off' : ''}`}>
-        <div className="util">
-          <div className="wrap">
-            <div className="util-l">
-              <span className="live"><span className="dot" />Replies within 24 hours</span>
-              <span>Software &amp; AI for growing businesses</span>
-            </div>
-            <div className="util-r">
-              <a href="#products" className="util-prod"><span className="new">New</span><span><b>Leadsmith</b> &amp; <b>EventSmith</b></span><Arrow className="go" /></a>
-              <a href={`mailto:${EMAIL}`} className="mail"><Icon name="mail" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />{EMAIL}</a>
-            </div>
-          </div>
-        </div>
         <div className="bar">
           <div className="wrap">
             <Logo />
@@ -82,12 +70,12 @@ export default function Header({ onIndustry }) {
                 <MenuButton>Services</MenuButton>
                 <div className="mega">
                   <div className="mega-panel">
-                    <MegaIntro tag="Services" title="Five systems. One goal: more revenue." text="Each one plugs into what you already run, so your team keeps working the way they know." href="#services" link="All services" onClick={closeMenus} />
+                    <MegaIntro tag="Services" title="Four systems. One goal: more revenue." text="Each one plugs into what you already run, so your team keeps working the way they know." href="#services" link="All services" onClick={closeMenus} />
                     <div className="mega-grid">
                       {services.map(s => <MegaItem key={s.title} href="#services" icon={s.icon} title={s.title} text={s.short} onClick={closeMenus} />)}
                       <MegaItem href="#process" icon="search" title="Business review" text="Where every project starts: find where revenue is lost or capped." onClick={closeMenus} />
                     </div>
-                    <MegaFeature href="#leadsmith" img={images.menuLeadsmith} tag="Product · In pilot" title="Leadsmith for metal fabrication shops" cta="See the product" onClick={closeMenus} />
+                    <MegaFeature href="#leadsmith" img={images.menuLeadsmith} tag="Product · Metal fabrication" title="Leadsmith for metal fabricators" cta="See the product" onClick={closeMenus} />
                   </div>
                 </div>
               </li>
@@ -95,11 +83,11 @@ export default function Header({ onIndustry }) {
                 <MenuButton>Industries</MenuButton>
                 <div className="mega">
                   <div className="mega-panel">
-                    <MegaIntro tag="Industries" title="Built for businesses that make, move and sell." text="Small and mid-sized businesses that have a working setup and want more revenue from it." href="#industries" link="Explore industries" onClick={closeMenus} />
+                    <MegaIntro tag="Industries" title="Built for businesses that make, move and sell." text="Businesses that already have a working setup and want more revenue from it." href="#industries" link="Explore industries" onClick={closeMenus} />
                     <div className="mega-grid">
                       {industries.map((ind, i) => <MegaItem key={ind.title} href="#industries" icon={ind.icon} title={ind.title} text={ind.short} onClick={() => { onIndustry(i); closeMenus(); }} />)}
                     </div>
-                    <MegaFeature href="#contact" img={images.menuIndustries} tag="Business review" title="Not sure where you fit? Start with a review." cta="Book a call" onClick={closeMenus} />
+                    <MegaFeature href="#contact" img={images.menuIndustries} tag="Business review" title="Not sure where you fit? Start with a review." cta="Book a business review" onClick={closeMenus} />
                   </div>
                 </div>
               </li>
@@ -107,7 +95,7 @@ export default function Header({ onIndustry }) {
                 <MenuButton>Products</MenuButton>
                 <div className="mega">
                   <div className="mega-panel two">
-                    <MegaIntro tag="Products" title="Revenue systems, already at work." text="Built on the same idea as every Vorcove project. Watch each one in action." href="#products" link="See both products" onClick={closeMenus} />
+                    <MegaIntro tag="Products" title="Revenue systems, built for specific trades." text="Built on the same idea as every Vorcove project. Watch each one in action." href="#products" link="See both products" onClick={closeMenus} />
                     <div className="mega-prods">
                       {products.map(p => (
                         <a key={p.id} href={`#${p.id}`} className="mega-prod" onClick={closeMenus}>
@@ -125,8 +113,8 @@ export default function Header({ onIndustry }) {
             </ul>
 
             <div className="head-cta">
-              <a href={`mailto:${EMAIL}`} className="ghost-link">Contact</a>
-              <a href="#contact" className="btn btn-mint">Book a call <Arrow /></a>
+              <a href={`mailto:${EMAIL}`} className="ghost-link">Email us</a>
+              <a href="#contact" className="btn btn-mint">Book a review <Arrow /></a>
               <button className="menu-btn" type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="drawer" onClick={() => setDrawer(!open)}>
                 <span /><span />
               </button>
@@ -148,7 +136,7 @@ export default function Header({ onIndustry }) {
         <a className="plain" href="#process" onClick={close}>How we work</a>
         <a className="plain" href="#about" onClick={close}>About</a>
         <a className="plain" href="#faq" onClick={close}>FAQ</a>
-        <a href="#contact" className="btn btn-mint" onClick={close}>Book a call <Arrow /></a>
+        <a href="#contact" className="btn btn-mint" onClick={close}>Book a business review <Arrow /></a>
       </nav>
     </>
   );

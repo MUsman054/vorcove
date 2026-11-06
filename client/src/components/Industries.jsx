@@ -10,7 +10,7 @@ export default function Industries({ active, onChange }) {
             <span className="eyebrow rv">Industries</span>
             <h2 className="h2 rv d1">Built for businesses<br />that make, move and sell.</h2>
           </div>
-          <p className="lead rv d2" style={{ maxWidth: 420 }}>Small and mid-sized businesses that have a working setup and want more revenue from it.</p>
+          <p className="lead rv d2" style={{ maxWidth: 420 }}>Businesses that already have a working setup and want more revenue from it.</p>
         </div>
         <div className="ind">
           <div className="ind-tabs rv" role="tablist" aria-label="Industries">

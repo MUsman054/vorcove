@@ -2,7 +2,7 @@ import Logo from './Logo.jsx';
 import { EMAIL, services } from '../data/content.js';
 
 const company = [['About', '#about'], ['Industries', '#industries'], ['Leadsmith', '#leadsmith'], ['EventSmith', '#eventsmith'], ['How we work', '#process'], ['FAQ', '#faq']];
-const contact = [[EMAIL, `mailto:${EMAIL}`], ['Book a call', '#contact'], ['Business review', '#contact']];
+const contact = [[EMAIL, `mailto:${EMAIL}`], ['Book a business review', '#contact']];
 
 const Column = ({ title, links }) => (
   <div>
@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="foot-top">
           <div>
             <Logo />
-            <p>We engineer software that directly expands your business revenue, built on the tools you already use.</p>
+            <p>We engineer systems that directly expand your business revenue, built on the tools you already use.</p>
           </div>
           <Column title="Services" links={services.map(s => [s.title, '#services'])} />
           <Column title="Company" links={company} />

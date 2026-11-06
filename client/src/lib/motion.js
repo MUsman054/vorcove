@@ -9,6 +9,9 @@ export const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)'
 let lenis = null;
 export const getLenis = () => lenis;
 
+// re-measure scroll-driven effects after content that was hidden becomes visible (e.g. a product tab)
+export const refreshScroll = () => ScrollTrigger.refresh();
+
 export const playVideo = v => {
   if (reduceMotion || !v) return;
   const p = v.play();
@@ -58,13 +61,6 @@ export function startScrollEffects() {
     gsap.to('.hero .slide-inner', {
       yPercent: -14, opacity: 0.2, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-    });
-    // background photos move slower than the page
-    gsap.utils.toArray('.why-bg img').forEach(img => {
-      gsap.fromTo(img, { yPercent: -8, scale: 1.18 }, {
-        yPercent: 8, ease: 'none',
-        scrollTrigger: { trigger: img.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true }
-      });
     });
     // big footer wordmark slides in from the side
     gsap.fromTo('.giant', { xPercent: -6 }, {
