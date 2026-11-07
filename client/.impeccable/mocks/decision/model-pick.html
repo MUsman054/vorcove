@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Thermal survey sketch</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A171E;--navy:#0F222B;--navy3:#1C3843;--orange:#FF8A3D}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1440px;height:900px;overflow:hidden;background:var(--ink);color:#fff;font-family:"Public Sans",sans-serif;position:relative}
+.scan{position:absolute;inset:0;background:
+ radial-gradient(160px 120px at 930px 330px,rgba(255,138,61,.95),rgba(255,138,61,.35) 45%,transparent 70%),
+ radial-gradient(120px 90px at 1210px 560px,rgba(255,138,61,.8),rgba(180,80,15,.3) 50%,transparent 72%),
+ radial-gradient(90px 70px at 760px 640px,rgba(255,138,61,.6),transparent 70%),
+ linear-gradient(180deg,#0A171E,#0F222B)}
+.flow{position:absolute;left:640px;top:180px;width:740px;height:600px}
+.node{position:absolute;border:1.5px solid #3A5A66;border-radius:6px;padding:14px 18px;font:600 18px Archivo;background:rgba(15,34,43,.7)}
+.line{position:absolute;height:2px;background:#3A5A66}
+.tag{position:absolute;font:600 13px Archivo;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)}
+nav{position:absolute;top:0;left:0;right:0;height:72px;display:flex;align-items:center;padding:0 56px;gap:28px;color:#B7C6CC;font-size:15px}
+nav b{color:#fff;font:800 24px Archivo;margin-right:auto}
+nav a{background:var(--orange);color:var(--ink);padding:10px 18px;border-radius:999px;font-weight:600}
+.copy{position:absolute;left:56px;top:190px;width:560px}
+h1{font:800 68px/.98 Archivo;font-stretch:80%}
+h1 em{font-style:normal;color:var(--orange)}
+.copy p{margin-top:26px;font-size:19px;line-height:1.55;color:#B7C6CC}
+.copy a{display:inline-block;margin-top:34px;background:var(--orange);color:var(--ink);font:700 17px Archivo;padding:18px 26px;border-radius:999px}
+.legend{position:absolute;left:640px;bottom:60px;display:flex;gap:10px;align-items:center;font-size:13px;color:#8EA3AB}
+.legend i{width:240px;height:8px;background:linear-gradient(90deg,#1C3843,#B4500F,#FF8A3D);border-radius:4px}
+</style></head><body>
+<div class="scan"></div>
+<nav><b>vorcove</b><span>Services</span><span>Products</span><span>How it works</span><a>Book a business review</a></nav>
+<div class="copy"><h1>See where your revenue is <em>running hot.</em></h1><p>We survey your existing tools and workflows, find where money escapes, and build systems that seal the leaks.</p><a>Book a business review →</a></div>
+<div class="flow">
+ <div class="node" style="left:0;top:0">Enquiry</div><div class="line" style="left:110px;top:24px;width:150px"></div>
+ <div class="node" style="left:260px;top:120px">Quote sent</div><div class="line" style="left:400px;top:144px;width:120px"></div>
+ <div class="node" style="left:520px;top:0">No follow-up</div>
+ <div class="node" style="left:60px;top:420px">Order entry</div><div class="line" style="left:200px;top:444px;width:180px"></div>
+ <div class="node" style="left:380px;top:360px">Invoice</div><div class="node" style="left:520px;top:340px">Reorder</div>
+ <div class="tag" style="left:330px;top:60px">Leak · quotes go cold</div>
+ <div class="tag" style="left:560px;top:420px">Leak · reorders missed</div>
+</div>
+<div class="legend">cold<i></i>leak</div>
+</body></html>
