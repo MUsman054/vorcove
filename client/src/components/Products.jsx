@@ -42,21 +42,22 @@ export default function Products() {
         <div className="prod-intro">
           <div>
             <span className="eyebrow rv">Our products</span>
-            <h2 className="h2 rv d1">Revenue systems,<br />built for specific trades.</h2>
+            {/* kept for screen readers and search; on screen the product tagline is the headline, leaving room for the video */}
+            <h2 className="vh">Revenue systems, built for specific trades.</h2>
           </div>
-        </div>
 
-        <div className="prod-tabs rv d2" role="tablist" aria-label="Products">
-          {products.map((p, i) => (
-            <button
-              key={p.id} id={p.id} ref={el => (tabs.current[i] = el)}
-              type="button" role="tab" className="prod-tab"
-              aria-selected={active === p.id} aria-controls={`${p.id}-panel`} tabIndex={active === p.id ? 0 : -1}
-              onClick={() => setActive(p.id)} onKeyDown={e => onTabKey(e, i)}
-            >
-              <b>{p.name}</b>
-            </button>
-          ))}
+          <div className="prod-tabs rv d2" role="tablist" aria-label="Products">
+            {products.map((p, i) => (
+              <button
+                key={p.id} id={p.id} ref={el => (tabs.current[i] = el)}
+                type="button" role="tab" className="prod-tab"
+                aria-selected={active === p.id} aria-controls={`${p.id}-panel`} tabIndex={active === p.id ? 0 : -1}
+                onClick={() => setActive(p.id)} onKeyDown={e => onTabKey(e, i)}
+              >
+                <b>{p.name}</b>
+              </button>
+            ))}
+          </div>
         </div>
 
         {products.map(p => <Product key={p.id} p={p} active={active === p.id} />)}
@@ -132,13 +133,6 @@ function Product({ p, active }) {
     } else bringIntoView();
   };
 
-  const seek = t => {
-    const v = video.current;
-    v.currentTime = t;
-    start(v);
-    bringIntoView();
-  };
-
   const togglePlay = () => {
     const v = video.current;
     if (v.paused) start(v);
@@ -165,10 +159,10 @@ function Product({ p, active }) {
     <article className="prod" id={`${p.id}-panel`} role="tabpanel" aria-labelledby={p.id} hidden={!active}>
       <div className="prod-head">
         <div>
-          <div className="prod-badges"><span className="b1">{p.status}</span><span>{p.for}</span></div>
+          {/* the active tab already shows the name, so it is kept for screen readers only */}
           <h3 className="prod-name">{p.name}</h3>
           <p className="prod-tagline">{p.tagline}</p>
-          <p className="lead">{p.text}</p>
+          <p className="prod-for">For {p.for.toLowerCase()}</p>
         </div>
         <div className="prod-actions">
           <a href={p.site} target="_blank" rel="noopener noreferrer" className="btn btn-mint">
@@ -178,62 +172,44 @@ function Product({ p, active }) {
         </div>
       </div>
 
-      <div className="prod-body">
-        <figure className="frame" data-zoom ref={frame}>
-          <div className="screen">
-            <video
-              ref={video} muted playsInline loop preload="metadata" poster={p.poster}
-              style={p.crop ? { transform: `scale(${p.crop})` } : undefined}
-              aria-label={`${p.name} product walkthrough video`}
-              onPlay={() => setPlaying(true)}
-              onPause={() => setPlaying(false)}
-              onLoadedMetadata={e => setDuration(e.currentTarget.duration || 0)}
-              onTimeUpdate={e => setTime(e.currentTarget.currentTime)}
-            >
-              <source src={p.video} type="video/mp4" />
-            </video>
-            {!playing && (
-              <button type="button" className="vplay" onClick={watch} aria-label={`Watch the ${p.name} demo`}>
-                <span>{glyphs.play}</span>Watch the demo{duration ? ` · ${clock(duration)}` : ''}
-              </button>
-            )}
-            <div className="vctrl">
-              <button type="button" aria-label={playing ? 'Pause video' : 'Play video'} onClick={togglePlay}>
-                {playing ? glyphs.pause : glyphs.play}<span>{playing ? 'Pause' : 'Play'}</span>
-              </button>
-              <button type="button" aria-label={muted ? 'Turn sound on' : 'Turn sound off'} onClick={toggleSound}>
-                {muted ? glyphs.soundOff : glyphs.soundOn}<span>{muted ? 'Sound off' : 'Sound on'}</span>
-              </button>
-              <button type="button" aria-label="Watch full screen" onClick={fullScreen}>
-                {glyphs.full}<span>Full screen</span>
-              </button>
-            </div>
+      <figure className="frame" data-zoom ref={frame}>
+        <div className="screen">
+          <video
+            ref={video} muted playsInline loop preload="metadata" poster={p.poster}
+            style={p.crop ? { transform: `scale(${p.crop})` } : undefined}
+            aria-label={`${p.name} product walkthrough video`}
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onLoadedMetadata={e => setDuration(e.currentTarget.duration || 0)}
+            onTimeUpdate={e => setTime(e.currentTarget.currentTime)}
+          >
+            <source src={p.video} type="video/mp4" />
+          </video>
+          {!playing && (
+            <button type="button" className="vplay" onClick={watch} aria-label={`Watch the ${p.name} demo`}>
+              <span>{glyphs.play}</span>Watch the demo{duration ? ` · ${clock(duration)}` : ''}
+            </button>
+          )}
+          {current >= 0 && (
+            <p className="vchap" aria-live="polite"><span>0{current + 1}</span>{p.features[current].title}</p>
+          )}
+          <div className="vctrl">
+            <button type="button" aria-label={playing ? 'Pause video' : 'Play video'} onClick={togglePlay}>
+              {playing ? glyphs.pause : glyphs.play}<span>{playing ? 'Pause' : 'Play'}</span>
+            </button>
+            <button type="button" aria-label={muted ? 'Turn sound on' : 'Turn sound off'} onClick={toggleSound}>
+              {muted ? glyphs.soundOff : glyphs.soundOn}<span>{muted ? 'Sound off' : 'Sound on'}</span>
+            </button>
+            <button type="button" aria-label="Watch full screen" onClick={fullScreen}>
+              {glyphs.full}<span>Full screen</span>
+            </button>
           </div>
-          <div className="vbar" aria-hidden="true">
-            <i style={{ width: duration ? `${(time / duration) * 100}%` : 0 }} />
-            {duration > 0 && starts.map(s => <b key={s} style={{ left: `${(s / duration) * 100}%` }} />)}
-          </div>
-          <figcaption className="frame-cap">
-            <span>{p.name} walkthrough{duration ? ` · ${clock(duration)}` : ''}</span>
-          </figcaption>
-        </figure>
-
-        <ol className="chapters" aria-label={`${p.name}: what it does`}>
-          {p.features.map((f, i) => {
-            const on = i === current;
-            const fill = on ? Math.min(1, (time - starts[i]) / (ends[i] - starts[i])) : 0;
-            return (
-              <li key={f.title} className={on ? 'on' : undefined}>
-                <button type="button" onClick={() => seek(f.at)} aria-current={on ? 'step' : undefined}>
-                  <span className="n">0{i + 1}</span>
-                  <span className="t"><b>{f.title}</b><span>{f.text}</span></span>
-                  <i className="fill" style={{ transform: `scaleX(${fill})` }} />
-                </button>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
+        </div>
+        <div className="vbar" aria-hidden="true">
+          <i style={{ width: duration ? `${(time / duration) * 100}%` : 0 }} />
+          {duration > 0 && starts.map(s => <b key={s} style={{ left: `${(s / duration) * 100}%` }} />)}
+        </div>
+      </figure>
     </article>
   );
 }
