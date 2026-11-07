@@ -133,6 +133,12 @@ function Product({ p, active }) {
     } else bringIntoView();
   };
 
+  const seek = t => {
+    const v = video.current;
+    v.currentTime = t;
+    start(v);
+  };
+
   const togglePlay = () => {
     const v = video.current;
     if (v.paused) start(v);
@@ -190,9 +196,6 @@ function Product({ p, active }) {
               <span>{glyphs.play}</span>Watch the demo{duration ? ` · ${clock(duration)}` : ''}
             </button>
           )}
-          {current >= 0 && (
-            <p className="vchap" aria-live="polite"><span>0{current + 1}</span>{p.features[current].title}</p>
-          )}
           <div className="vctrl">
             <button type="button" aria-label={playing ? 'Pause video' : 'Play video'} onClick={togglePlay}>
               {playing ? glyphs.pause : glyphs.play}<span>{playing ? 'Pause' : 'Play'}</span>
@@ -210,6 +213,21 @@ function Product({ p, active }) {
           {duration > 0 && starts.map(s => <b key={s} style={{ left: `${(s / duration) * 100}%` }} />)}
         </div>
       </figure>
+
+      <ol className="chapters" aria-label={`${p.name}: what the walkthrough shows`}>
+        {p.features.map((f, i) => {
+          const on = i === current;
+          const fill = on ? Math.min(1, (time - starts[i]) / (ends[i] - starts[i])) : 0;
+          return (
+            <li key={f.title} className={on ? 'on' : undefined}>
+              <button type="button" onClick={() => seek(f.at)} aria-current={on ? 'step' : undefined}>
+                <span className="n">0{i + 1}</span>{f.title}
+                <i className="fill" style={{ transform: `scaleX(${fill})` }} />
+              </button>
+            </li>
+          );
+        })}
+      </ol>
     </article>
   );
 }
