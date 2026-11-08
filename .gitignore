@@ -4,3 +4,5 @@ client/dist/
 *.log
 CLAUDE.md
 .claude
+.vercel
+.env*

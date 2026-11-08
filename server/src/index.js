@@ -21,7 +21,7 @@ app.use(helmet({
       'media-src': ["'self'", 'https://videos.pexels.com', 'https://images.pexels.com'],
       'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       'font-src': ["'self'", 'https://fonts.gstatic.com'],
-      'connect-src': ["'self'"]
+      'connect-src': ["'self'", 'https://api.web3forms.com']
     }
   }
 }));

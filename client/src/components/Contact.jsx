@@ -2,7 +2,11 @@ import { useRef, useState } from 'react';
 import { Arrow, Icon } from './Icons.jsx';
 import { EMAIL } from '../data/content.js';
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Web3Forms access keys are meant to be public; it only lets the form deliver to your inbox.
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
+const WEB3FORMS_KEY = '93a19576-91cc-4f97-be6d-ca5acef7fc02';
+
+const EMAIL_RE =/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const empty = { business: '', email: '', message: '', website: '' };
 const messages = {
   business: 'Please enter your business name.',
@@ -38,16 +42,26 @@ export default function Contact() {
     const first = Object.keys(messages).find(k => found[k]);
     if (first) { refs[first].current.focus(); return; }
 
+    // Honeypot filled in: it's a bot. Pretend it worked and send nothing.
+    if (values.website) { setValues(empty); setStatus('sent'); return; }
+
     setStatus('sending');
     try {
-      const res = await fetch('/api/leads', {
+      const res = await fetch(WEB3FORMS_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New business review request: ${values.business.trim()}`,
+          from_name: 'Vorcove website',
+          name: values.business.trim(),
+          email: values.email.trim(),
+          replyto: values.email.trim(),
+          message: values.message.trim()
+        })
       });
       const data = await res.json().catch(() => ({}));
-      if (res.status === 400 && data.errors) { setErrors(data.errors); setStatus('idle'); return; }
-      if (!res.ok) throw new Error();
+      if (!res.ok || !data.success) throw new Error(data.message);
       setValues(empty);
       setStatus('sent');
     } catch {
