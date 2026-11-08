@@ -20,6 +20,10 @@ export default function Hero() {
         </video>
         <div className="wrap slide-inner">
           <div className="slide-copy">
+<<<<<<< HEAD
+=======
+            <span className="tag"><i />{hero.tag}</span>
+>>>>>>> 2e2fc8aa18856854de78d13c832473ec172e257a
             <h1>{hero.lines.map((l, k) => <Fragment key={k}>{k > 0 && ' '}<Line parts={l} /></Fragment>)}</h1>
             <p>{hero.text}</p>
             <div className="actions">
