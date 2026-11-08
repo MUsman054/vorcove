@@ -21,11 +21,7 @@ app.use(helmet({
       'media-src': ["'self'", 'https://videos.pexels.com', 'https://images.pexels.com'],
       'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       'font-src': ["'self'", 'https://fonts.gstatic.com'],
-<<<<<<< HEAD
       'connect-src': ["'self'", 'https://api.web3forms.com']
-=======
-      'connect-src': ["'self'"]
->>>>>>> 2e2fc8aa18856854de78d13c832473ec172e257a
     }
   }
 }));

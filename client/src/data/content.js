@@ -6,10 +6,6 @@ export const EMAIL = 'hello@vorcove.com';
 
 // hero: lines are lists of plain strings and { em } highlights
 export const hero = {
-<<<<<<< HEAD
-=======
-  tag: 'Software & AI studio',
->>>>>>> 2e2fc8aa18856854de78d13c832473ec172e257a
   lines: [['We build systems'], ['that fix ', { em: 'lost revenue.' }]],
   text: 'Vorcove is a software and AI studio. We find where your business is losing time, customers and money, then build the systems that win them back, on top of the tools you already use.',
   primary: { label: 'Book a business review', href: '#contact' },
