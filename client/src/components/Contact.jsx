@@ -116,7 +116,7 @@ export default function Contact() {
               </p>
             )}
             {status === 'failed' && (
-              <p className="form-error">Your message didn't send. Please try again, or email us at {EMAIL}.</p>
+              <p className="form-error">Your message didn't send. Please try again, or email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
             )}
           </div>
         </form>
