@@ -55,7 +55,7 @@ export const products = [
     end: 35,
     // the recording has black bars baked in top and bottom; this zoom crops them out
     crop: 1.09,
-    site: 'https://leadsmith-alpha.vercel.app/',
+    site: 'https://leadsmith.vorcove.com',
     video: '/media/leadsmith.mp4',
     poster: '/media/leadsmith-poster.jpg'
   },
