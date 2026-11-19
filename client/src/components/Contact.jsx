@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Arrow, Icon } from './Icons.jsx';
-import { EMAIL } from '../data/content.js';
+import { EMAIL, PHONE, PHONE_HREF } from '../data/content.js';
 
 // Web3Forms access keys are meant to be public; it only lets the form deliver to your inbox.
 const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
@@ -90,8 +90,9 @@ export default function Contact() {
           <p className="lead rv d2">Tell us about your business and we'll get back within 24 hours with where we think you could grow.</p>
           <div className="cinfo">
             <a className="ci rv" href={`mailto:${EMAIL}`}><i><Icon name="mail" /></i><span><small>Email us</small><b>{EMAIL}</b></span></a>
-            <div className="ci rv d1"><i><Icon name="clock" /></i><span><small>Response time</small><b>Within 24 hours</b></span></div>
-            <div className="ci rv d2"><i><Icon name="search" /></i><span><small>What happens next</small><b>We start with a business review</b></span></div>
+            <a className="ci rv d1" href={PHONE_HREF}><i><Icon name="phone" /></i><span><small>Call us</small><b>{PHONE}</b></span></a>
+            <div className="ci rv d2"><i><Icon name="clock" /></i><span><small>Response time</small><b>Within 24 hours</b></span></div>
+            <div className="ci rv d3"><i><Icon name="search" /></i><span><small>What happens next</small><b>We start with a business review</b></span></div>
           </div>
         </div>
 
