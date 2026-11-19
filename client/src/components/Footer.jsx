@@ -1,8 +1,8 @@
 import Logo from './Logo.jsx';
-import { EMAIL, services } from '../data/content.js';
+import { EMAIL, PHONE, PHONE_HREF, services } from '../data/content.js';
 
 const company = [['About', '#about'], ['LinkedIn', 'https://www.linkedin.com/company/vorcove-studio/'], ['Industries', '#industries'], ['Leadsmith', '#leadsmith'], ['EventSmith', '#eventsmith'], ['How we work', '#process'], ['FAQ', '#faq']];
-const contact = [[EMAIL, `mailto:${EMAIL}`], ['Book a business review', '#contact']];
+const contact = [[EMAIL, `mailto:${EMAIL}`], [PHONE, PHONE_HREF],['Book a business review', '#contact']];
 
 const Column = ({ title, links }) => (
   <div>

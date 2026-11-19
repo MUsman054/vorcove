@@ -3,6 +3,8 @@
 const px = (id, w = 1400) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 
 export const EMAIL = 'hello@vorcove.com';
+export const PHONE = '+1 512 325 5475';
+export const PHONE_HREF = 'tel:+15123255475';
 
 // hero: lines are lists of plain strings and { em } highlights
 export const hero = {
