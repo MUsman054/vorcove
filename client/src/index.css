@@ -392,13 +392,13 @@ body.drawer-open .site-head .menu-btn span{background:#fff}
 .contact{background:var(--sand);padding:var(--sec-y) 0}
 .contact .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
 .contact .lead{margin-top:14px;max-width:480px}
-.cinfo{display:grid;gap:10px;margin-top:26px}
-.ci{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 16px;transition:border-color .3s}
+.cinfo{display:grid;gap:8px;margin-top:20px}
+.ci{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 14px;transition:border-color .3s}
 a.ci:hover{border-color:var(--navy)}
-.ci i{width:40px;height:40px;border-radius:12px;background:var(--navy);display:grid;place-items:center;flex:none}
-.ci i svg{width:20px;height:20px;stroke:var(--mint);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ci small{display:block;font-size:13px;color:var(--soft);font-weight:500}
-.ci b{font-size:16px;font-weight:600}
+.ci i{width:34px;height:34px;border-radius:10px;background:var(--navy);display:grid;place-items:center;flex:none}
+.ci i svg{width:17px;height:17px;stroke:var(--mint);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ci small{display:block;font-size:12px;color:var(--soft);font-weight:500}
+.ci b{font-size:15px;font-weight:600}
 form{background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px 32px;box-shadow:0 40px 80px -40px rgba(var(--navy-rgb),.3)}
 form h3{font-size:22px;font-weight:600;letter-spacing:-.035em}
 form>p{color:var(--muted);font-size:15px;margin:4px 0 18px}
