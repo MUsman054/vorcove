@@ -1,3 +1,4 @@
+import { timingSafeEqual } from 'node:crypto';
 import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
 import Lead from '../models/Lead.js';
@@ -7,6 +8,16 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // at most 10 enquiries per visitor every 15 minutes
 const submitLimit = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: 'draft-7', legacyHeaders: false });
+
+// slows down anyone guessing the admin token
+const adminLimit = rateLimit({ windowMs: 15 * 60 * 1000, limit: 20, standardHeaders: 'draft-7', legacyHeaders: false });
+
+// constant-time comparison, so response timing doesn't leak how much of the token matched
+const sameSecret = (a, b) => {
+  const x = Buffer.from(a);
+  const y = Buffer.from(b);
+  return x.length === y.length && timingSafeEqual(x, y);
+};
 
 const clean = v => (typeof v === 'string' ? v.trim() : '');
 
@@ -31,10 +42,10 @@ router.post('/', submitLimit, async (req, res, next) => {
 });
 
 // private list of enquiries, only when ADMIN_TOKEN is set
-router.get('/', async (req, res, next) => {
+router.get('/', adminLimit, async (req, res, next) => {
   const token = process.env.ADMIN_TOKEN;
   if (!token) return res.status(404).json({ ok: false });
-  if (req.get('authorization') !== `Bearer ${token}`) return res.status(401).json({ ok: false });
+  if (!sameSecret(req.get('authorization') || '', `Bearer ${token}`)) return res.status(401).json({ ok: false });
   try {
     const leads = await Lead.find().sort({ createdAt: -1 }).limit(200).lean();
     res.json({ ok: true, leads });
