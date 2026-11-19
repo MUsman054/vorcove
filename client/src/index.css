@@ -392,7 +392,7 @@ body.drawer-open .site-head .menu-btn span{background:#fff}
 .contact{background:var(--sand);padding:var(--sec-y) 0}
 .contact .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
 .contact .lead{margin-top:14px;max-width:480px}
-.cinfo{display:grid;gap:8px;margin-top:20px}
+.cinfo{display:grid;gap:8px;margin-top:20px;max-width:480px}
 .ci{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 14px;transition:border-color .3s}
 a.ci:hover{border-color:var(--navy)}
 .ci i{width:34px;height:34px;border-radius:10px;background:var(--navy);display:grid;place-items:center;flex:none}
