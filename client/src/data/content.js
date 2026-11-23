@@ -78,7 +78,7 @@ export const products = [
       { title: "Shows what you're missing", text: 'Insights on lost demand, pricing signals and repeat events.', at: 22 }
     ],
     end: 29,
-    site: 'https://eventsmith.vercel.app',
+    site: 'https://eventsmith.vorcove.com',
     video: '/media/eventsmith.mp4',
     poster: '/media/eventsmith-poster-quote.jpg'
   }

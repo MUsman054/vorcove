@@ -20,7 +20,7 @@ Services: Automation, AI agents, Data & revenue insights, Custom software.
 Engagement: business review → plan (fixes ranked by revenue impact, project scoped from it) → build on top of existing tools for a one-time build fee, first working version in about two weeks → measure and improve, with an optional monthly plan for ongoing support.
 Enquiries come through the site's contact form (business name, email, goals); Vorcove replies within 24 hours. Contact email: hello@vorcove.com.
 Products:
-- EventSmith: AI quoting for event rental businesses. Reads each inquiry, builds the quote from the business's own catalog and live stock, waits for approval, follows up. Live demo at https://eventsmith.vercel.app.
+- EventSmith: AI quoting for event rental businesses. Reads each inquiry, builds the quote from the business's own catalog and live stock, waits for approval, follows up. Live demo at https://eventsmith.vorcove.com.
 - Leadsmith: enquiry-to-quote and follow-up for metal fabricators. Not built yet; a demo walkthrough exists. Do not describe it as live, in pilot, or coming soon.
 
 ## Capabilities and Constraints
@@ -38,7 +38,7 @@ Products:
 
 ## Evidence on Hand
 - Product walkthrough videos: client/public/media/leadsmith.mp4, client/public/media/eventsmith.mp4, with posters leadsmith-poster.jpg and eventsmith-poster.jpg.
-- EventSmith live demo: https://eventsmith.vercel.app.
+- EventSmith live demo: https://eventsmith.vorcove.com.
 - No client results, testimonials, logos, case studies, press or metrics exist. Never fabricate them. Commitments (24-hour reply, ~2-week first version, client owns code/data/IP) are promises, not results.
 
 ## Product Principles
